@@ -1,17 +1,19 @@
-package main
-import(
+package readfile
+
+import (
 	"bufio"
 	"fmt"
 	"log"
 	"os"
 )
-func main(){
-	file, err := os.Open("data.txt")
+
+func Readfile(s string) {
+	file, err := os.Open(s)
 	if err != nil {
 		log.Fatal(err)
 	}
 	scanner := bufio.NewScanner(file)
-	for scanner.Scan(){
+	for scanner.Scan() {
 		fmt.Println(scanner.Text())
 	}
 	err = file.Close()
