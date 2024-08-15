@@ -72,6 +72,8 @@ func main() {
 	nums, err := datafile.GetFloats("data1.txt")
 	check(err)
 	fmt.Println(average(nums))
+	fmt.Println("/////////////several ints/////////////////")
+	severalInts(1, 200)
 
 }
 func average(slice []float64) float64 {
@@ -81,4 +83,11 @@ func average(slice []float64) float64 {
 	}
 	result := num / float64(len(slice))
 	return float64(result)
+}
+func severalInts(numbers ...int) {
+	numes := 0
+	for _, n := range numbers {
+		numes += n
+	}
+	fmt.Println(numes / len(numbers))
 }
