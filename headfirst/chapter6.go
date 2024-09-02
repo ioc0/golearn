@@ -2,7 +2,15 @@ package main
 
 import (
 	"fmt"
+
+	"github.com/headfirstgo/datafile"
 )
+
+func check(e error) {
+	if e != nil {
+		panic(e)
+	}
+}
 
 func main() {
 	primes := []int{1, 2, 2, 33, 4, 4, 1, 1}
@@ -35,5 +43,21 @@ func main() {
 	fmt.Println("//////////////////////////////////////////////////")
 	myArray2 := [10]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
 	fmt.Println(len(myArray2))
+	mySlice2 := myArray2[1:4]
+	fmt.Println(mySlice2)
+	array1 := [8]string{"a", "b", "c", "d", "e", "f", "j", "h"}
+	slice1 := array1[0:3]
+	//slice2 := array1[2:5]
+	array1[1] = "X"
+	fmt.Println(array1, slice1)
+	slice := []string{"a", "b"}
+	fmt.Println(slice, len(slice))
+	slice = append(slice, "c")
+	fmt.Println(slice, len(slice))
+	slice = append(slice, "d", "e", "f")
+
+	fmt.Println(slice, len(slice))
+	data, _ := datafile.GetFloats("data.txt")
+	fmt.Println(data)
 
 }
