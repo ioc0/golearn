@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
+	"log"
 
-	"github.com/headfirstgo/datafile"
+	"example.com/greetings/datafile"
+	"example.com/greetings/ioc0"
 )
 
-func check(e error) {
-	if e != nil {
-		panic(e)
+func check(err error) {
+	if err != nil {
+		log.Fatal(err)
 	}
 }
-
 func main() {
 	primes := []int{1, 2, 2, 33, 4, 4, 1, 1}
 	primes[0] = 2
@@ -43,21 +44,50 @@ func main() {
 	fmt.Println("//////////////////////////////////////////////////")
 	myArray2 := [10]int{10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
 	fmt.Println(len(myArray2))
-	mySlice2 := myArray2[1:4]
-	fmt.Println(mySlice2)
-	array1 := [8]string{"a", "b", "c", "d", "e", "f", "j", "h"}
-	slice1 := array1[0:3]
-	//slice2 := array1[2:5]
-	array1[1] = "X"
-	fmt.Println(array1, slice1)
-	slice := []string{"a", "b"}
-	fmt.Println(slice, len(slice))
-	slice = append(slice, "c")
-	fmt.Println(slice, len(slice))
-	slice = append(slice, "d", "e", "f")
+	//datafile.GetFloats("data.txt")
+	//readfile.Readfile("data.txt")
+	s1 := []string{"s1", "s1"}
+	s2 := append(s1, "s2", "s2")
+	s3 := append(s2, "s3", "s3")
+	s4 := append(s3, "s4", "s4")
+	fmt.Println(s1, s2, s3, s4)
+	s4[0] = "XXX"
+	fmt.Println(s1, s2, s3, s4)
+	a1 := []string{"a1", "a2"}
+	a1 = append(a1, "a2", "a2")
+	a1 = append(a1, "a3", "a3")
+	a1 = append(a1, "a4", "a4")
+	fmt.Println(a1)
+	///////////////////////////
+	floatSlice := make([]float64, 10)
+	boolSlice := make([]bool, 6)
+	fmt.Println(floatSlice[2], boolSlice[3])
+	var intSlice []int
+	fmt.Printf("intSlice: %#v \n", intSlice)
+	intSlice = append(intSlice, 27)
 
-	fmt.Println(slice, len(slice))
-	data, _ := datafile.GetFloats("data.txt")
-	fmt.Println(data)
+	intSlice = append(intSlice, 28)
+	fmt.Printf("intSlice: %#v \n", intSlice)
+	ioc0.YAHU()
+	nums, err := datafile.GetFloats("data1.txt")
+	check(err)
+	fmt.Println(average(nums))
+	fmt.Println("/////////////several ints/////////////////")
+	severalInts(1, 200)
 
+}
+func average(slice []float64) float64 {
+	num := 0.0
+	for _, nums := range slice {
+		num += nums
+	}
+	result := num / float64(len(slice))
+	return float64(result)
+}
+func severalInts(numbers ...int) {
+	numes := 0
+	for _, n := range numbers {
+		numes += n
+	}
+	fmt.Println(numes / len(numbers))
 }
