@@ -32,6 +32,7 @@ func main() {
 	for i, name := range names {
 		fmt.Printf("%s: %d\n", name, counts[i])
 	}
+	testMap()
 }
 
 func count(filename string) {
@@ -40,4 +41,18 @@ func count(filename string) {
 		log.Fatal(err)
 	}
 	fmt.Println(lines)
+}
+func testMap() {
+	ranks := make(map[string]int)
+	ranks["gold"] = 1
+	ranks["silver"] = 2
+	ranks["bronze"] = 3
+	fmt.Println(ranks["bronze"])
+	fmt.Println(ranks["gold"])
+	elements := make(map[string]string)
+	elements["Li"] = "Lithium"
+	fmt.Println(elements["Li"])
+	someMap := map[string]int{"a": 1, "b": 2}
+	fmt.Println(someMap["a"])
+
 }

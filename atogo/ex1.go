@@ -1,10 +1,10 @@
-package main
+package atogo
 
 import (
 	"fmt"
 	"math/rand"
 )
 
-func main() {
+func Favrand() {
 	fmt.Println("my favorite number is", rand.Intn(10))
 }
