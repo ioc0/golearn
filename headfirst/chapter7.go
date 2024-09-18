@@ -8,8 +8,37 @@ import (
 )
 
 func main() {
-	count("votes.txt")
-	lines, err := datafile.ReadStrings("votes.txt")
+	//count("votes.txt")
+	//countVotes("votes.txt")
+	//testMap()
+	lines, err := datafile.GetStrings2("votes.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(lines)
+	var names []string
+	var count []int
+
+	for _, line := range lines {
+		matched := false
+		for i, name := range names {
+			if name == line {
+				matched = true
+				count[i]++
+			}
+		}
+		if matched == false {
+			names = append(names, line)
+			count = append(count, 1)
+		}
+	}
+	for i, name := range names {
+		fmt.Printf("%s: %d\n", name, count[i])
+	}
+}
+
+func countVotes(textfile string) {
+	lines, err := datafile.ReadStrings(textfile)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -32,7 +61,6 @@ func main() {
 	for i, name := range names {
 		fmt.Printf("%s: %d\n", name, counts[i])
 	}
-	testMap()
 }
 
 func count(filename string) {
